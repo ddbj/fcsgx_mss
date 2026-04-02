@@ -1,6 +1,11 @@
 # fcsgxmss
 FCSgx-related scripts to assist MSS works for quick screening of the sequence contamination
 
+# Install the script
+1. ssh login to a012 as w3const user.
+2. git clone https://github.com/ddbj/fcsgxmss.git
+3. Prepare symbolic lins for fcsgxmss.sh in /data1/FCS. `ln -s ~/fcsgxmss/fcsgxmss.sh /data1/FCS/fcsgxmss.sh`
+
 ## fcsgxmss.sh
 Carry out FCS-GX against MSS submission.
 
