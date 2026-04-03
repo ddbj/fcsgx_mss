@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-pip install bio
+pip install biopython
 pip install ete3
 '''
 

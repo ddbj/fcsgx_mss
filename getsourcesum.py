@@ -11,7 +11,6 @@ from ete3 import NCBITaxa
 
 '''
 pip install biopython
-pip install bio
 pip install polars
 pip install dictdiffer
 pip install pydrive2
