@@ -7,6 +7,7 @@ FCSgx-related scripts to assist MSS works for quick screening of the sequence co
 - This script is expected to be executed by members of w3const group.
 - python3
   - The modules (biopython, dictdiffer, ete3, pandas, polars, pydrive2, xlsxwriter) are quired to run, but have already been prepared in python venv, ~/wok-kosuge/mypy/ that is called during the script. Therefore you do not need to install them by yourself.
+- Google Workspace (Gdrive, Spreadsheet, and GAS)
 
 # Installation
 1. ssh login to a012 as w3const user.
