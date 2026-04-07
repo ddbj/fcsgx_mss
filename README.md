@@ -16,7 +16,7 @@ FCSgx-related scripts to assist MSS works for quick screening of the sequence co
 4. Copy the secret keys to upload the file to Gdrive. **Make sure that the owner of the two json files must be w3const:w3const. In addition, file permission is 640 and 660 for client_secrets.json, saved_credentials.json, respectively.**  
    `cp -av ~/work-kosuge/fcsgxmss_secrets/*.json ~/fcsgx_mss/`
 5. The script depends on the taxonomy data prepared by ete tool. To update `~/work-kosuge/etetoolkit/ncbitaxonomy.sqlite`, `bash ~/fcsgx_mss/update_taxonomydb.sh` should be executeted by w3const user at 6:00 every day.
-6. Create the [fill_fcslinkMSS.gs](https://script.google.com/d/1uMxyao4sgALBOuQsrQt1yXU-lacT9UyJjwKSO7ZbqxA___Ht6rvx5zZ-/edit?usp=sharing) to your google apps project, moreover enable 'Drive v3 API' for it. Set the trigger to run `putFCSlink` every 5 minutes.
+6. Create the [fill_fcslinkMSS.gs](https://script.google.com/d/1uMxyao4sgALBOuQsrQt1yXU-lacT9UyJjwKSO7ZbqxA___Ht6rvx5zZ-/edit?usp=sharing) (access to the link is restricted to our members) to your google apps project, moreover enable 'Drive v3 API' for it. Set the trigger to run `putFCSlink` every 5 minutes.
 
 # How to use
 ~~~
