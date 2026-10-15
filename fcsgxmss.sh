@@ -112,9 +112,8 @@ fcsgx2() {
   cp -v ${OPTVALUE_Q} ${GXQUERY}/tmpmsswork_${ACCOUNT}/
   # Remove //
   # nkf -Lu --overwrite ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
-  tr '\r' '\n' <${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/} > ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}.tmp && \
-  mv -f ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}.tmp ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
-  sed -i 's@^/\+$@@g' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
+  perl -i -pe 's/\r\n/\n/g; s/\r/\n/g' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
+  sed -i '/^>/! s@/@@g' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
   sed -i '/^$/d' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
 
   # Run fcs-gx
