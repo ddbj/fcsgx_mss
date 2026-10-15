@@ -91,7 +91,7 @@ fcsgx1() {
   for v in ${FASFILES};do
   # nkf -Lu --overwrite $v
   tr '\r' '\n' <${v} > ${v}.tmp && mv -f ${v}.tmp ${v}
-  sed '/^>/! s@/@@g' $v
+  sed -i '/^>/! s@/@@g' $v
   sed -i '/^$/d' $v
   done
 
