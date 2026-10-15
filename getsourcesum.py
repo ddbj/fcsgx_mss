@@ -52,9 +52,13 @@ def get_taxid_and_rank(scientific_name):
         return None, None
 
 def main():
-    args = sys.argv
+    # polars can read binary data, so we can read the file in binary mode and replace line endings
+    file_path = sys.argv[1]
+    with open(file_path, 'rb') as f:
+        content = f.read().replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+
     df = pl.read_csv(
-        args[1],
+        io.BytesIO(content),
         separator='\t',
         has_header=False,
         new_columns=['col1', 'col2', 'col3', 'col4', 'col5']
