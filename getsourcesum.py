@@ -2,6 +2,7 @@
 # This py script extracts 'source' feature from annotation file.
 import polars as pl
 import sys
+import io
 from dictdiffer import diff
 from Bio import Entrez
 from ete3 import NCBITaxa
