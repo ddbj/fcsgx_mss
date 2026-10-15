@@ -90,9 +90,10 @@ fcsgx1() {
   FASFILES=$(find ${GXQUERY}/tmpmsswork_${ACCOUNT}_${OPTVALUE_Q}_${QDIRSHORT} -name '*.fasta' -or -name '*.fa' -or -name '*.fna' -or -name '*.seq')
   for v in ${FASFILES};do
   # nkf -Lu --overwrite $v
-  tr '\r' '\n' <${v} > ${v}.tmp && mv -f ${v}.tmp ${v}
-  sed -i '/^>/! s@/@@g' $v
-  sed -i '/^$/d' $v
+  perl -i -pe 's/\r\n/\n/g; s/\r/\n/g' ${v}
+  # tr '\r' '\n' <${v} > ${v}.tmp && mv -f ${v}.tmp ${v}
+  sed -i '/^>/! s@/@@g' ${v}
+  sed -i '/^$/d' ${v}
   done
 
   # Run fcs-gx
