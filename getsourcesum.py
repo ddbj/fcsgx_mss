@@ -56,7 +56,7 @@ def main():
     # polars can read binary data, so we can read the file in binary mode and replace line endings
     file_path = sys.argv[1]
     with open(file_path, 'rb') as f:
-        content = f.read().replace(b'\r\n', b'\n').replace(b'\r', b'\n')
+        content = f.read().replace(b'\r\n', b'\n').replace(b'\r', b'\n').replace(b'"', b'')
 
     df = pl.read_csv(
         io.BytesIO(content),
