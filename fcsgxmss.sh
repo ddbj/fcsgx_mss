@@ -14,7 +14,7 @@ case $(hostname) in
     ;;
   *)
     FCSHOME=""
-    ;
+    ;;
 esac
 
 GXQUERY=${FCSHOME}/gx-query

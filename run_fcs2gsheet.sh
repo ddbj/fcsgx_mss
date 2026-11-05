@@ -9,7 +9,7 @@ case $(hostname) in
     ;;
   *)
     FCSDIR=""
-    ;
+    ;;
 esac
 
 # RESULTDIR="/home/$(whoami)/fcsgxmss"
