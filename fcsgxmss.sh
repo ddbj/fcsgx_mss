@@ -5,7 +5,18 @@
 export LANG=C
 export FCS_DEFAULT_IMAGE=fcs-gx.sif
 
-FCSHOME="/data1/FCS"
+case $(hostname) in
+  m04)
+    FCSHOME="/data/FCS"
+    ;;
+  a012 | a040 | a041 | a043)
+    FCSHOME="/data1/FCS"
+    ;;
+  *)
+    FCSHOME=""
+    ;
+esac
+
 GXQUERY=${FCSHOME}/gx-query
 ACCOUNT=$(whoami)
 GXOUTDIR=${HOME}/fcsgxmss

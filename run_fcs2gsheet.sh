@@ -2,8 +2,20 @@
 
 # RESULTDIR="/home/$(whoami)/fcsgxmss"
 RESULTDIR="/home/w3const/fcslog/gx"
-FCSDIR="/data1/FCS"
 INSTALLDIR="/home/w3const/fcsgx_mss"
+
+case $(hostname) in
+  m04)
+    FCSDIR="/data/FCS"
+    ;;
+  a012 | a040 | a041 | a043)
+    FCSDIR="/data1/FCS"
+    ;;
+  *)
+    FCSDIR=""
+    ;
+esac
+
 
 # enable python3 modules
 . /home/w3const/work-kosuge/mypy/bin/activate
