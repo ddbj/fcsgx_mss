@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# RESULTDIR="/home/$(whoami)/fcsgxmss"
-RESULTDIR="/home/w3const/fcslog/gx"
-INSTALLDIR="/home/w3const/fcsgx_mss"
-
 case $(hostname) in
   m04)
     FCSDIR="/data/FCS"
@@ -16,6 +12,9 @@ case $(hostname) in
     ;
 esac
 
+# RESULTDIR="/home/$(whoami)/fcsgxmss"
+RESULTDIR="/home/w3const/fcslog/gx"
+INSTALLDIR="/home/w3const/fcsgx_mss"
 
 # enable python3 modules
 . /home/w3const/work-kosuge/mypy/bin/activate
