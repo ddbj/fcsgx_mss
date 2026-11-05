@@ -49,7 +49,7 @@ You can do FCS-GX against the latest submission files when NSUB number is design
 ~~~
 
 ### e.g. 3
-Use of -o option can change the output directory to your favorite one. You should prepare the output directory in advance when you use -d option.
+Use of -o option can change the output directory to your favorite one. You should prepare the output directory in advance when you use -o option.
 ~~~
 /data1/FCS/fcsgxmss.sh -q ~/w3const/submissions/production/NSUB001887/20240702-151414/SAMD00797160_TA6350.fasta -t 2104 -o ~/myresult
 ~~~
