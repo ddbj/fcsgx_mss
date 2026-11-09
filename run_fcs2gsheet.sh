@@ -141,4 +141,6 @@ else
     echo "Contamination is detected"
     echo "Please find the result in ${RESULTDIR}/${nsubnum}/${nsubnum}.xlsx or https://drive.google.com/drive/u/1/folders/15E0yNLuRQdmW5bN6wDOxEoAzE-EuLyjH"
 fi
+
+chmod 664 ${RESULTDIR}/${nsubnum}/*
 echo "# Finished."
