@@ -117,7 +117,7 @@ fcsgx1() {
 # Query is a fasta file
 fcsgx2() {
   # Get query, copy to NVMe partition
-  QDIRNAME=$(mktemp --dry-run "${GXQUERY}/tmpmsswork_${ACCOUNT}_XXXXX")
+  QDIRNAME=$(mktemp --dry-run "XXXXX")
   mkdir -m 775 ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}
   cp -v ${OPTVALUE_Q} ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}/
   # Remove //
