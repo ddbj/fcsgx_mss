@@ -26,9 +26,6 @@ GXDB_LOC=${FCSHOME}/local_db
 # w/ RAM disk, designate the directory mounted to RAM disk
 # GXDB_LOC=/dev/shm/FCS-w3const/local_db
 
-# delete former query
-find ${GXQUERY} -type d -name "tmpmsswork_${ACCOUNT}_*" | xargs rm -rf
-
 # Options
 showusage() {
 echo "Easily run FCS-GX against MSS submissions."
@@ -114,24 +111,27 @@ fcsgx1() {
   done
 
   echo "The result is saved in ${GXOUTDIR}/${OPTVALUE_Q}"
+  rm -rf ${GXQUERY}/tmpmsswork_${ACCOUNT}_${OPTVALUE_Q}_${QDIRSHORT}
 }
 
 # Query is a fasta file
 fcsgx2() {
   # Get query, copy to NVMe partition
-  mkdir -m 775 ${GXQUERY}/tmpmsswork_${ACCOUNT}
-  cp -v ${OPTVALUE_Q} ${GXQUERY}/tmpmsswork_${ACCOUNT}/
+  QDIRNAME=$(mktemp --dry-run "${GXQUERY}/tmpmsswork_${ACCOUNT}_XXXXX")
+  mkdir -m 775 ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}
+  cp -v ${OPTVALUE_Q} ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}/
   # Remove //
   # nkf -Lu --overwrite ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
-  perl -i -pe 's/\r\n/\n/g; s/\r/\n/g' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
-  sed -i '/^>/! s@/@@g' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
-  sed -i '/^$/d' ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/}
+  perl -i -pe 's/\r\n/\n/g; s/\r/\n/g' ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}/${OPTVALUE_Q##*/}
+  sed -i '/^>/! s@/@@g' ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}/${OPTVALUE_Q##*/}
+  sed -i '/^$/d' ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}/${OPTVALUE_Q##*/}
 
   # Run fcs-gx
   cd ${FCSHOME}
-  python3 ./fcs.py screen genome --fasta ${GXQUERY}/tmpmsswork_${ACCOUNT}/${OPTVALUE_Q##*/} --out-dir ${GXOUTDIR} --gx-db "$GXDB_LOC/gxdb" --tax-id ${OPTVALUE_T}
+  python3 ./fcs.py screen genome --fasta ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}/${OPTVALUE_Q##*/} --out-dir ${GXOUTDIR} --gx-db "$GXDB_LOC/gxdb" --tax-id ${OPTVALUE_T}
   T=${OPTVALUE_Q##*/}
   echo "The result is saved as ${GXOUTDIR}/${T%.*}.${OPTVALUE_T}.*"
+  rm -rf ${GXQUERY}/tmpmsswork_${ACCOUNT}_${QDIRNAME}
 }
 
 # Main
@@ -144,5 +144,3 @@ else
   echo ""
   showusage
 fi
-# Delete my query
-find ${FCSHOME}/gx-query -type d -name "tmpmsswork_${ACCOUNT}" -or -name "tmpmsswork_${ACCOUNT}_*" | xargs rm -rf
